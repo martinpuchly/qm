@@ -1,0 +1,38 @@
+<%= form_with(model: batch) do |form| %>
+  <% if batch.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(batch.errors.count, "error") %> prohibited this batch from being saved:</h2>
+
+      <ul>
+        <% batch.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :material_id, style: "display: block" %>
+        <%= form.select :material_id, Material.order(:sapId, :asc).all.map { |t| [t.name, t.id]}%>
+
+  </div>
+
+  <div>
+    <%= form.label :batchId, style: "display: block" %>
+    <%= form.text_field :batchId, value: @next_batchId %>
+  </div>
+
+  <div>
+    <%= form.label :supplier_id, style: "display: block" %>
+    <%= form.select :supplier_id, Supplier.order(:name, :asc).all.map { |t| [t.name, t.id]}%>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

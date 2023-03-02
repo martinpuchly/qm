@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sapId: MyString
+  category: one
+  dimension: MyString
+
+two:
+  name: MyString
+  sapId: MyString
+  category: two
+  dimension: MyString

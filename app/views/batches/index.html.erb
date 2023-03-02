@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>ŠARŽE</h1>
+<%= search_form_for @q do |f| %>
+
+  # Search if the name field contains...
+  <%= f.label :batchId %>
+  <%= f.search_field :batchId %>
+
+
+
+
+  <%= f.submit %>
+<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ŠARŽA</th>
+      <th scope="col">Name</th>
+      <th scope="col">SAP ID</th>
+      <th scope="col">SIze</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @batches.each do |batch| %>
+    <tr id="<%= dom_id batch %>">
+      <th scope="row"><%= batch.batchId %></th>
+      <td><%= batch.material.name %></td>
+      <td><%= batch.material.sapId %></td>
+      <td><%= "#{batch.quantity}#{batch.material.category.unit}" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New batch", new_batch_path %>
+
