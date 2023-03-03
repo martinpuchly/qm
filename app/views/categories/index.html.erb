@@ -3,12 +3,26 @@
 <h1>Categories</h1>
 
 <div id="categories">
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Názov</th>
+    <th scope="col">Jednostka</th>
+    <th scope="col">Možnosti</th>
+  </tr>
+</thead>
+<tbody>
   <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
+    <tr id="<%= dom_id category %>">
+      <th scope="row"><%= category.id %></th>
+      <td><%= category.name %></td>
+      <td><%= category.unit %></td>
+      <td>
+        <%= link_to "Show this material", category %>
+      </td>
+    </tr>
   <% end %>
-</div>
-
+  </tbody>
+</table>
 <%= link_to "New category", new_category_path %>

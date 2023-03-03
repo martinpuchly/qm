@@ -2,13 +2,27 @@
 
 <h1>Suppliers</h1>
 
-<div id="suppliers">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">SAP ID:</th>
+      <th scope="col">Názov</th>
+      <th scope="col">Druh</th>
+      <th scope="col">Možnosti</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @suppliers.each do |supplier| %>
-    <%= render supplier %>
-    <p>
-      <%= link_to "Show this supplier", supplier %>
-    </p>
+    <tr  id="<%= dom_id supplier %>">
+      <th scope="row"><%= material.supplier %></th>
+      <td><%= supplier.name %></td>  
+      <td>
+        <%= link_to "Show this material", material %>
+        <%= link_to "Zobraziť šarže", batches_path material %>
+        <%= link_to "Pridať šaržu", new_batch_path material %>
+      </td>
+    </tr>
   <% end %>
-</div>
-
+  </tbody>
+</table>
 <%= link_to "New supplier", new_supplier_path %>

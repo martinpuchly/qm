@@ -3,11 +3,13 @@ class BatchesController < ApplicationController
 
   # GET /batches or /batches.json
   def index
-    @q = Batch.includes(:material, :supplier,  material: [:category]).ransack(params[:q])
-    @batches = @q.result
-
-
-
+    if(params[:material_id])
+      @q = Batch.includes(:material, :supplier,  material: [:category]).where(:material_id, params[:material_id]).ransack(params[:q])
+      @batches = @q.result
+    else
+      @q = Batch.includes(:material, :supplier,  material: [:category]).ransack(params[:q])
+      @batches = @q.result
+    end
   end
 
   # GET /batches/1 or /batches/1.json
@@ -16,6 +18,7 @@ class BatchesController < ApplicationController
 
   # GET /batches/new
   def new
+    @material = Material.includes(:category).find(params[:material_id])
     @batch = Batch.new
     @next_batchId = "#{Batch.maximum(:batchId).to_i + 1}".rjust(6, "0")
   end
@@ -70,6 +73,6 @@ class BatchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def batch_params
-      params.require(:batch).permit(:material_id, :batchId, :supplier_id, :quantity)
+      params.require(:batch).permit(:material_id, :batchId, :document, :heat, :supplier_id, :quantity)
     end
 end

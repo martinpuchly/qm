@@ -2,14 +2,8 @@
 
 <h1>ŠARŽE</h1>
 <%= search_form_for @q do |f| %>
-
-  # Search if the name field contains...
   <%= f.label :batchId %>
   <%= f.search_field :batchId %>
-
-
-
-
   <%= f.submit %>
 <% end %>
 

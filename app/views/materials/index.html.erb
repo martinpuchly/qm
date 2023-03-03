@@ -1,14 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Materials</h1>
-
-<div id="materials">
-  <% @materials.each do |material| %>
-    <%= render material %>
-    <p>
-      <%= link_to "Show this material", material %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">SAP ID:</th>
+      <th scope="col">Názov</th>
+      <th scope="col">Druh</th>
+      <th scope="col">Možnosti</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @materials.each do |material| %>
+      <tr  id="<%= dom_id material %>">
+        <th scope="row"><%= material.sapId %></th>
+        <td><%= material.name %></td>
+        <td><%= material.category.name %></td>
+        <td>
+          <%= link_to "Show this material", material %>
+          <%= link_to "Zobraziť šarže", batches_path material %>
+          <%= link_to "Pridať šaržu", new_batch_path material %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to "New material", new_material_path %>

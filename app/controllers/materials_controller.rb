@@ -3,7 +3,7 @@ class MaterialsController < ApplicationController
 
   # GET /materials or /materials.json
   def index
-    @materials = Material.all
+    @materials = Material.includes(:category).all
   end
 
   # GET /materials/1 or /materials/1.json

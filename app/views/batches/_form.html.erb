@@ -11,25 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :material_id, style: "display: block" %>
-        <%= form.select :material_id, Material.order(:sapId, :asc).all.map { |t| [t.name, t.id]}%>
-
-  </div>
+  <%= form.hidden :material_id, value: @material.id %>
 
   <div>
-    <%= form.label :batchId, style: "display: block" %>
+    <%= form.label :batchId, "Šarža: ", style: "display: block" %>
     <%= form.text_field :batchId, value: @next_batchId %>
   </div>
 
   <div>
-    <%= form.label :supplier_id, style: "display: block" %>
+  <%= form.label :document, "Certifikát: ", style: "display: block" %>
+  <%= form.text_field :document %>
+</div>
+
+<div>
+  <%= form.label :heat, "Tavba/Ser.číslo: ", style: "display: block" %>
+  <%= form.text_field :heat %>
+</div>
+
+  <div>
+    <%= form.label :supplier_id, "Dodávateľ: ", style: "display: block" %>
     <%= form.select :supplier_id, Supplier.order(:name, :asc).all.map { |t| [t.name, t.id]}%>
   </div>
 
   <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.text_field :quantity %>
+    <%= form.label :quantity, "Množstvo: ", style: "display: block" %>
+    <%= form.text_field :quantity %><%= @material.category.unit %>
   </div>
 
   <div>
